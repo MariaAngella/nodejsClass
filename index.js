@@ -22,3 +22,5 @@ b. callback argument is a function with request and response objects */
 app.get ('/', function (req, res){
     res.send('Hello World')
 })
+
+/* Express is a web app framework for nodejs */

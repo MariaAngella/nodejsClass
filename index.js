@@ -19,8 +19,28 @@ reason for the 'cannot get /' error is because we haven't sent anything back to 
 1. in express we handle a GET request with the get method.....app.get(path, callback)
 a. argument path is the path of the GET request... it's anything that comes after your domain name.i.e localhost:3000/ = / 
 b. callback argument is a function with request and response objects */
-app.get ('/', function (req, res){
+/* app.get ('/', function (req, res){
     res.send('Hello World')
-})
+}) */
 
 /* Express is a web app framework for nodejs */
+
+//using arrow function
+app.get("/", (req, res)=> {
+  res.send("Hello World here");
+});
+
+
+/* use nodemon not to restart the server eachtime a change is made 
+npm install nodemon --save-dev......(nodemon) is a package........(--save-dev) is a flag*/
+
+/* Routing 
+get for display
+post for a new record
+put for edit in the database
+delete for deleting a record*/
+
+
+app.get("/about", (req, res) => {
+  res.send("This is the about us page");
+});

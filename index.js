@@ -2,7 +2,14 @@
 /* trying to display content on a browser using express package */
 const express = require("express"); // require is a keyword used to use a package i.e express
 const app = express(); // now we have our express app
+const path = require("path");
+/* setting the view engine as pug */
+app.set('view engine', 'pug')
+/* there's a folder called views and the rest-----path.join(_dirname, 'views')--- is how to get it */
+app.set('views', path.join(__dirname, 'views'))
 
+
+/* npm is  It is the default package manager for the JavaScript runtime environment Node.js */
 //app.listen(3000)opened up a port 3000 on which our server will listen with the browser
 app.listen(3000, function() {
   console.log("listening on 3000"); // console.log is good practice to show that the code is running
@@ -64,12 +71,39 @@ app.get('/user/:name', (req, res) => {
   res.send("Hello" + req.params.name);
 });
 
+/* new work */
+app.get("/users", (req, res) => {
+  res.send("This is class" + req.query.class + "cohort" + req.query.cohort);
+});
 
 
-/* writing an error page for a path/route that doesn't exist */
+
+/* for acessing my pug file */
+app.get("/register", (req, res) => {
+  res.render("registerform");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+/* writing an error page for a path/route that doesn't exist----should be last in the code coz it stops the rest of the code */
 
 app.get("*", (req, res) => {
   res.send("Got an ERROR request at /user");
 });
 
 //Assgnmt---READ ABOUT PUG(templating language)slide presentation--form using pug that has name,etc
+
+
+
+
+
+

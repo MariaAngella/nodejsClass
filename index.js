@@ -3,6 +3,12 @@
 const express = require("express"); // require is a keyword used to use a package i.e express
 const app = express(); // now we have our express app
 const path = require("path");
+const bodyParser = require("body-parser") //for geting the posted data from the form in the console
+
+
+/* for geting the posted data from the form in the console  */
+app.use(bodyParser.urlencoded({extended: true}))
+
 /* setting the view engine as pug */
 app.set('view engine', 'pug')
 /* there's a folder called views and the rest-----path.join(_dirname, 'views')--- is how to get it */
@@ -31,9 +37,9 @@ b. callback argument is a function with request and response objects */
 /* Express is a web app framework for nodejs */
 
 //using arrow function
-app.get("/", (req, res) => {
-  res.send("Hello World here");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World here");
+// });
 
 /* use nodemon not to restart the server eachtime a change is made 
 npm install nodemon --save-dev......(nodemon) is a package........(--save-dev) is a flag*/
@@ -45,21 +51,21 @@ put ----browser is editing in the server/database
 delete ----browser is deleting in the server*/
 
 /* routing methods below ......other methods for res are send,render etc*/
-app.get("/about", (req, res) => {
-  res.send("This is the about us page");
-});
+// app.get("/about", (req, res) => {
+//   res.send("This is the about us page");
+// });
 
-app.post("/", (req, res) => {
-  res.send("Got a POST request");
-});
+// app.post("/", (req, res) => {
+//   res.send("Got a POST request");
+// });
 
-app.put("/user", (req, res) => {
-  res.send("Got a PUT request at /user");
-});
+// app.put("/user", (req, res) => {
+//   res.send("Got a PUT request at /user");
+// });
 
-app.delete("/user", (req, res) => {
-  res.send("Got a DELETE request at /user");
-});
+// app.delete("/user", (req, res) => {
+//   res.send("Got a DELETE request at /user");
+// });
 
 /* postman is a testing and building tool for checking methods if they work unlike in the browser that needs a form first */
 
@@ -67,22 +73,61 @@ app.delete("/user", (req, res) => {
 and path params */
 // path param
 
-app.get('/user/:name', (req, res) => {
-  res.send("Hello" + req.params.name);
-});
+// app.get('/user/:maria', (req, res) => {
+//   res.send("Hello" + req.params.maria);
+// });
 
-/* new work */
-app.get("/users", (req, res) => {
-  res.send("This is class" + req.query.class + "cohort" + req.query.cohort);
-});
+/* query parameters  */
+// app.get("/users", (req, res) => {
+//   res.send("This is class" + req.query.class + "cohort" + req.query.cohort);
+// });
+
+
+
+
+
+
 
 
 
 /* for acessing my pug file */
+// app.get("/register", (req, res) => {
+//   res.render("registerform");
+// });
+
+
+/* accessing registerform.pug...... get displays the content input in the query parameter*/
 app.get("/register", (req, res) => {
+  console.log('body', req.body)
+  console.log("Query Params", req.query);
   res.render("registerform");
 });
 
+
+/* posting the form */
+app.post("/register", (req, res) => {
+  console.log("Form has been posted");
+  console.log("body", req.body);
+  console.log("Query Params", req.query);
+  res.render("registerform");
+  
+});
+
+app.post("/thanks", (req, res) => {
+  
+  // res.send(req.body);
+  // res.send("Hello world");
+  // res.send("Hello" + req.body.firstname);
+  // res.render("cohort");
+  res.render("cohort",{
+    name: req.body.firstname,
+    lastnamee: req.body.lastname
+  });
+});
+
+
+
+/*  */
 
 
 
@@ -96,9 +141,9 @@ app.get("/register", (req, res) => {
 
 /* writing an error page for a path/route that doesn't exist----should be last in the code coz it stops the rest of the code */
 
-app.get("*", (req, res) => {
-  res.send("Got an ERROR request at /user");
-});
+// app.get("*", (req, res) => {
+//   res.send("Got an ERROR request at /user");
+// });
 
 //Assgnmt---READ ABOUT PUG(templating language)slide presentation--form using pug that has name,etc
 

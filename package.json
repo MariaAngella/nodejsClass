@@ -1,5 +1,6 @@
+
 {
-  "name": "hello-world",
+  "name": "hello-world", 
   "version": "1.0.0",
   "description": "my name",
   "main": "index.js",
@@ -11,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.7.9",
     "pug": "^2.0.4"
   },
   "devDependencies": {

@@ -3,7 +3,22 @@
 const express = require("express"); // require is a keyword used to use a package i.e express
 const app = express(); // now we have our express app
 const path = require("path");
-const bodyParser = require("body-parser") //for geting the posted data from the form in the console
+const bodyParser = require("body-parser") //for geting the posted data from the form in the console(parse means packaging/analysing something and putting it in another form i.e json)
+
+/* mongooseNode Js + MongoDB
+MongoDB object modeling for node
+Need it to connect our nodejs to our mongo database 
+use mongoose to save data to the mongodb*/
+var mongoose = require("mongoose");
+
+
+;
+
+/* mongooseNode Js + MongoDB
+MongoDB object modeling for node
+Need it to connect our nodejs to our mongo database */
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/node-demo");
 
 
 /* for geting the posted data from the form in the console  */
@@ -105,14 +120,15 @@ app.get("/register", (req, res) => {
 
 
 /* posting the form */
-app.post("/register", (req, res) => {
+/* app.post("/register", (req, res) => {
   console.log("Form has been posted");
   console.log("body", req.body);
   console.log("Query Params", req.query);
   res.render("registerform");
   
 });
-
+ */
+/* posting to the new form */
 app.post("/thanks", (req, res) => {
   
   // res.send(req.body);
@@ -127,11 +143,42 @@ app.post("/thanks", (req, res) => {
 
 
 
-/*  */
+/* Creating a Database Schema */
+var nameSchema = new mongoose.Schema({
+  firstname: String,
+  lastname: String
+});
+
+/* model of user and pass a schema 
+"user" is the collection name*/
+var User = mongoose.model("User", nameSchema);
 
 
 
+/* express app to create/capture data to the endpoint or path(/register) */
+app.post("/register", (req, res) => {
+  var myData = new User(req.body); //user model for data entered(req.body) and the model is the one saved to the database
+  myData
+    .save()
+    .then(item => {
+      res.send("item saved to database");
+    })
+    .catch(err => {
+      res.status(400).send("unable to save to database");
+    });
+});
 
+
+/* Promise is like kfc while waiting for your order but other activities continues ie. async awaits
+.then when successful
+.catch if it has failed */
+
+
+/* commands used in mongodb
+ show dbs
+ use node-demo
+ show collections
+ db.users.find()*/
 
 
 

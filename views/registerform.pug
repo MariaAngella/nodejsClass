@@ -1,7 +1,10 @@
 
-//- extends layout.pug
 
+//-   form(method="POST" action="/thanks")   for linking the outputs to cohort.pug
 doctype <!DOCTYPE html>
+
+//- extends layout.pug
+//- block content
 html(lang="en")
     head
         link(rel="stylesheet",href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
@@ -11,7 +14,7 @@ html(lang="en")
             div.col-md-6
                 header.card-header
                     h4.card-title Registration
-                form(method="POST")
+                form(method="POST") 
                     div.form-row
                         div.col.form-group
                             label First name
@@ -40,7 +43,7 @@ html(lang="en")
                     
                         div.col.form-group
                             label Country
-                                select.form-control
+                                select.form-control(name="country")
                                     option(value="uganda") Uganda
                                     option(value="Uzbekistan") Uzbekistan
                                     option(value="Russia") Russia

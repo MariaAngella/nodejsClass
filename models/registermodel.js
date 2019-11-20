@@ -10,6 +10,7 @@ const registerSchema = new mongoose.Schema({
     gender: String,
     country: String,
     city: String
+   
   });
 
   //create a model

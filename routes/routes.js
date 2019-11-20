@@ -6,7 +6,7 @@ const Register = require("../models/registerModel");
 /* Routes */
 //Get reads the registerform.pug and displays it on the path
 router.get("/", (req, res) => {
-    res.render("register1");
+    res.render("register");
   });
   
   //extracts all data for the database and displays it

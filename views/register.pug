@@ -2,12 +2,25 @@ extends layout.pug
 
 block content
     div.row.justify-content-center
+        
         div.col-md-5
             div.card-body.border
                 header.card-header
                     h4.card-title.text-center.pt-1 Register
+                        form(action="/uploadfile" enctype="multipart/form-data" method="POST")
+                            input(type="file" name="myFile")
+                            input(type="submit" value="Upload your file")
+                            br
+                        form(action="/uploadmultiple" enctype="multipart/form-data" method="POST")
+                            input(type="file" name="myFiles" multiple)
+                            input(type="submit" value="Upload files")
+                            br
+                        form(action="/uploadphoto" enctype="multipart/form-data" method="POST")
+                            input(type="file" name="myImage" accept="image/*")
+                            input(type="submit" value="Upload Photo")
+
                 article.card-body
-                form(method="POST" action="/register")
+                form(method="POST" action="/register" )
                     div.form-row
                         div.col.form-group
                             label First name
@@ -48,6 +61,9 @@ block content
                                 option(value="Dar-es Salaam") Dar-es Salaam
                                 option(value="Kigali")  Kigali
                                 option(value="Bujumbura")  Bujumbura
+                    
+                 
+
                     div.form-row
                         div.col.form-group
                             label Create password

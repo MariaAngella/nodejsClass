@@ -11,6 +11,22 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 // body-parser to parse request body data. if not used it show undefined data.
 app.use(bodyParser.urlencoded({ extended: true })); //becoz we are getting  the data from a url.
+
+
+
+// import routes
+const registrationRoutes = require("./routes/registerroutes");
+app.use("/register", registrationRoutes);
+
+const loginRoutes = require("./routes/loginroute");
+app.use("/login", loginRoutes);
+
+
+
+
+
+
+
 // creating the storage.
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -23,6 +39,7 @@ var storage = multer.diskStorage({
     );
   }
 });
+
 // initialising multer
 var upload = multer({
   storage: storage
@@ -55,6 +72,10 @@ mongoose.connect("mongodb://localhost:27017/node-demo");
 app.get("/", (req, res) => {
   res.render("register");
 });
+
+
+
+
 // configuring the upload file route
 app.post("/uploadfile", upload.single("myFile"), (req, res, next) => {
   const file = req.file; // fetches the files
@@ -75,6 +96,7 @@ app.post("/uploadmultiple", upload.array("myFiles", 2), (req, res, next) => {
     error.httpStatusCode = 400;
     return next(error);
   }
+  res.send(files);
 });
 // configuring image upload to the database
 app.post("/uploadphoto", upload.single("myImage"), (req, res) => {
@@ -92,12 +114,12 @@ app.post("/uploadphoto", upload.single("myImage"), (req, res) => {
     if (err) return console.log(err);
     console.log("Saved to database");
     res.contentType(finalImg.contentType);
-    res.send(finalImg.images);
+    res.send(finalImg.image);
   });
 });
-// import routes
-const registrationRoutes = require("./routes/routes");
-app.use("/register", registrationRoutes);
+
+
+
 // configuring the home route
 //Setting the server and to Listen to port 3000
 app.listen(3000, () => {

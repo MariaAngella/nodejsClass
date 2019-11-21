@@ -17,7 +17,7 @@ describe("registration model test", () => {
       console.log("database error" + err);
     }
   });
-  
+  //an assertion/test.....asserting that the expected output should be ----
   test("should be able to save", async () => {
     const register = new Register({ firstname: "maria" });
     // save data using scheme collection name 'Register' to database
@@ -29,7 +29,10 @@ describe("registration model test", () => {
       console.log("database error" + err);
     }
   });
-//system should not save if first name field is empty
+
+
+ //an assertion/test.....asserting that the expected output should be ----
+ //system should not save if first name field is empty
 test("should not save when firstname is empty", async ()=>{
   try{
     await new Register({ lastname: "angella"}).save();

@@ -7,10 +7,18 @@ const fs = require("fs"); // requring the file system
 const mongodb = require("mongodb");
 //to use express in node u use app.
 const app = express();
+
+
+// Mongoose connects the app to the mongoDB.
+mongoose.connect("mongodb://localhost:27017/node-demo",()=>{
+  console.log("connected successfully to databse")
+});
+
+
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
-// body-parser to parse request body data. if not used it show undefined data.
-app.use(bodyParser.urlencoded({ extended: true })); //becoz we are getting  the data from a url.
+app.use(bodyParser.urlencoded({ extended: true })); // body-parser to parse request body data. if not used it show undefined data.
+//becoz we are getting  the data from a url.
 
 
 
@@ -63,12 +71,11 @@ MongoClient.connect(
     });
   }
 );
-var nameSchema = new mongoose.Schema({
+/* var nameSchema = new mongoose.Schema({
   firstname: String,
   lastname: String
-});
-// Mongoose connects the app to the mongoDB.
-mongoose.connect("mongodb://localhost:27017/node-demo");
+}); */
+
 app.get("/", (req, res) => {
   res.render("register");
 });

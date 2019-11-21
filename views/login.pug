@@ -7,27 +7,27 @@ block content
             div.card-body.border
                 header.card-header
                     h4.card-title.text-center.pt-1 Login
-                        form(action="/confirm"  method="POST")
+                        form(action="/login"  method="POST")
                          
-                    div.form-row
-                        div.col.form-group
-                            label User Name
-                            input.form-control( name="username")
-                            small.form-text.text-muted We'll never share your email with anyone else.
-                    
-                    div.form-row
-                        div.col.form-group
-                            label Enter Your Password
-                            input.form-control(type="password" name="password")
-                    div.form-row
-                        div.col.form-group
-                            button.btn.btn-primary.btn-block(type="submit") Login
-                        
-                    div.form-row
-                        small.col.text-muted By clicking the 'Sign Up' button, you confirm that you accept our 
-                           <br> Terms of use and Privacy Policy.
+                            div.form-row
+                                div.col.form-group
+                                    label User Name
+                                    input.form-control( name="username")
+                                    small.form-text.text-muted We'll never share your email with anyone else.
                             
-                            
+                            div.form-row
+                                div.col.form-group
+                                    label Enter Your Password
+                                    input.form-control(type="password" name="password")
+                            div.form-row
+                                div.col.form-group
+                                    button.btn.btn-primary.btn-block(type="submit") Login
+                                
+                            div.form-row
+                                small.col.text-muted By clicking the 'Sign Up' button, you confirm that you accept our 
+                                <br> Terms of use and Privacy Policy.
+                                    
+                                    
                                         
                 //- End of form
             //- End of Card-body

@@ -8,6 +8,10 @@ router.get("/", (req, res) => {
   res.render("login");
 });
 
+/* router.post("/", (req, res) => {
+  res.send("Have I really worked............");
+}); */
+
 // submits a login page information
  router.post('/', async(req, res) => {
     try{

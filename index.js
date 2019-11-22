@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs"); // requring the file system
 const mongodb = require("mongodb");
+const session = require("express-session");
 //to use express in node u use app.
 const app = express();
 
@@ -20,7 +21,13 @@ app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true })); // body-parser to parse request body data. if not used it show undefined data.
 //becoz we are getting  the data from a url.
 
+//express-session for tracking user's activity    or tracking logins
+app.use(session({
+secret:"thesecret",
+resave: true,
+saveUninitialized: false
 
+}));
 
 // import routes
 const registrationRoutes = require("./routes/registerroutes");

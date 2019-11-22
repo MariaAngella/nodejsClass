@@ -13,13 +13,18 @@ router.get("/", (req, res) => {
 }); */
 
 // submits a login page information
+// POST = data on form to bodyparser to Json(req.body)
  router.post('/', async(req, res) => {
     try{
         const user = await Register.authenticate(req.body.username, req.body.password);
-        res.send("hey " + user.firstname + " " + user.lastname)
+        // res.send("hey " + user.firstname + " " + user.lastname)
+        req.session.user = user;
+        res.redirect('/register/search') //not good to use
     }catch{
-        res.send("Login Failed")
+        // res.send("Login Failed")
+    
         // res.redirect('register')
+        res.render('login',{erroe: "Failed to login, Please try again"})
     }
 })
  

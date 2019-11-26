@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
         // res.send("Login Failed")
     
         // res.redirect('register')
-        res.render('login',{erroe: "Failed to login, Please try again"})
+        res.render('login',{error: "Failed to login, Please try again"})
     }
 })
  
